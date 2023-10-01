@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <title>Personal Portfolio</title>
+    <style>
+        /* default */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #212121;
+            color: grey;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        p {
+            color: rgb(161, 161, 161);
+        }
+
+        a,
+        .btn {
+            transition: all 300ms ease;
+        }
+
+        /* nav bar */
+        nav,
+        .nav-links {
+            display: flex;
+        }
+
+        .logo-main{
+            background: linear-gradient(to right,#ff3333, rgb(128, 107, 241));
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 2.25rem;
+            font-weight: 600;
+        }
+        nav {
+            justify-content: space-around;
+            align-items: center;
+            height: 17vh;
+        }
+
+        .nav-links {
+            font-size: 1.5rem;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: grey;
+        }
+
+        a:hover {
+            color: grey;
+            text-decoration: underline grey;
+            text-underline-offset: 1rem;
+            text-decoration-color: rgb(181, 181, 181);
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .logo:hover {
+            cursor: default;
+        }
+
+        /* intro nav */
+        .hamburger-nav {
+            display: none;
+        }
+
+        .hamburger-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        .hamburger-icon span {
+            width: 100%;
+            height: 2px;
+            background-color: rgb(121, 119, 119);
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: grey;
+            width: fit-content;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            font-size: 1rem;
+            color: black;
+            text-transform: none;
+            transition: all 0.3 ease-in-out;
+        }
+
+        .menu-links li {
+            list-style: none;
+        }
+
+        .menu-links.open {
+            max-height: 300px;
+        }
+
+        .hamburger-icon.open span:first-child {
+            transform: rotate(45deg) translate(10px, 5px);
+        }
+
+        .hamburger-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-icon.open span:last-child {
+            transform: rotate(-45deg) translate(10px, -5px);
+        }
+
+        .hamburger-icon span:first-child {
+            transform: none;
+        }
+
+        .hamburger-icon span:first-child {
+            opacity: 1;
+        }
+
+        .hamburger-icon span:first-child {
+            transform: none;
+        }
+
+        /*all section */
+        section {
+            height: 96vh;
+            min-height: fit-content;
+            padding-top: 4vh;
+            margin: 0 10rem;
+            box-sizing: border-box;
+        }
+
+        .section-container {
+            display: flex;
+        }
+
+        /* profile sections */
+        #profile {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            height: 80vh;
+            cursor: default;
+        }
+        .profile-pic-main{
+            border-radius: 50%;
+            box-shadow: 9px 9px 10px rgb(0, 0, 0, 0.7);
+        }
+        #profile .profile-pic-main:hover{
+            scale: 1.05;
+            transition: all ease-in-out 0.4s;
+            box-shadow: 9px 9px 10px rgb(0, 0, 0, 0.7);
+        }
+        .section__pic-container {
+            display: flex;
+            height: 400px;
+            width: 400px;
+            margin: auto 0;
+        }
+
+        .section__text {
+            align-self: center;
+            text-align: center;
+        }
+
+        .section__text p {
+            font-weight: 600;
+        }
+
+        .section__text__p1 {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .section__text__p2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 1rem;
+        }
+        #profile .title{
+            -webkit-text-stroke: 1px #7d5ac3;
+            color: transparent;
+        }
+
+
+        .socials-container {
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            margin: 1rem;
+            gap: 1rem;
+        }
+        .socials-container img{
+            border-radius: 100%;
+            box-shadow: 3px 3px 5px rgba(228, 225, 225, 0.5);
+            background-color: white;
+        }
+        .socials-container img:hover{
+            scale: 1.1;
+            box-shadow: 5px 5px 5px rgb(172, 171, 171);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* icons */
+        .icon {
+            cursor: pointer;
+            height: 2.5rem;
+        }
+
+        /* buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            font-weight: 600;
+            font-size: 0.7rem;
+            transition: all 300ms ease;
+            height: 2.75rem;
+            width: 6.75rem;
+            border-radius: 2rem;
+        }
+
+        .btn-color-1,
+        .btn-color-2 {
+            border: rgb(139, 138, 138) 0.1rem solid;
+            color: white;
+        }
+
+        .btn-color-1:hover,
+        .btn-color-2:hover {
+            cursor: pointer;
+        }
+
+        .btn-color-1,
+        .btn-color-2:hover {
+            background-color: #7d5ac3;
+            box-shadow: 3px 3px 10px #7d5ac3;
+            border: none;
+            color: white;
+        }
+
+        .btn-color-1:hover {
+            background-color: #7d5ac3;
+            box-shadow: 3px 3px 10px #7d5ac3;
+        }
+        .btn-color-1{
+            box-shadow: 4px 4px 12px #7d5ac3;
+        }
+
+        .btn-color-2 {
+            background: none;
+        }
+
+        .btn-color-2:hover {
+            box-shadow: 3px 3px 10px #7d5ac3;
+        }
+
+        /* about section */
+        #about {
+            position: relative;
+        }
+
+        .about-containers {
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-details-container {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-containers,
+        .about-details-container {
+            display: flex;
+        }
+        .details-container , .contact-info-upper-container{
+                box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.3);
+            } 
+
+        .about-pic {
+            border-radius: 2rem;
+            margin-right: 1rem;
+            box-shadow: 4px 4px 10px rgb(53, 53, 53);
+        }
+
+        .arrow {
+            position: absolute;
+            right: -7rem;
+            bottom: 2.5rem;
+        }
+
+        .details-container {
+            padding: 1.5rem;
+            flex: 1;
+            background-color: #e0d4f1;
+            border-radius: 2rem;
+            border: rgb(53, 53, 53) 0.1rem solid;
+            border-color: rgb(163, 163, 163);
+            text-align: center;
+        }
+        .details-container:hover{
+            box-shadow: 4px 4px 10px #f0e9f8;
+        }
+
+        .section-container {
+            height: 80%;
+        }
+
+        .section__pic-container {
+            height: 400px;
+            width: 400px;
+            margin: auto 0;
+        }
+
+
+        /* experience section */
+        #experience {
+            position: relative;
+        }
+
+        .experience-sub-title {
+            color: rgb(85, 85, 85);
+            font-weight: 600;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .experience-details-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .article-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: initial;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .article {
+            display: flex;
+            justify-content: space-around;
+            gap: 0.5rem;
+            width: 10rem;
+        }
+
+        .article-img {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .article .icon {
+            cursor: default;
+        }
+
+        /* contact section */
+        #contact {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .contact-info-upper-container {
+            display: flex;
+            justify-content: center;
+            border-radius: 2rem;
+            border: rgb(53, 53, 53) 0.1rem solid;
+            border-color: rgb(163, 163, 163);
+            background-color: #e0d4f1;
+            margin: 2rem 0;
+            padding: 0.5rem;
+        }
+        .contact-info-upper-container:hover{
+            box-shadow: 3px 3px 10px rgb(53, 53, 53);
+        }
+
+        .contact-info-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3rem;
+            margin: 1rem;
+        }
+
+        .contact-info-container p {
+            font-size: larger;
+        }
+
+        .contact-icon {
+            cursor: default;
+        }
+
+        .email-icon {
+            height: 3.2rem;
+        }
+
+        /* footer */
+        .footer {
+            height: 26vh;
+            margin: 0 1rem;
+        }
+
+        .footer-p {
+            text-align: center;
+            padding: 2rem;
+        }
+        span{
+            color: red;
+        }
+
+        /* responsiveness */
+
+        @media screen and (max-width: 1400px){
+            #profile{
+                height: 83vh;
+                margin-bottom: 6rem;
+            }
+            .about-containers{
+                flex-wrap: wrap;
+            }
+        }
+        @media screen and (max-width: 1200px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .hamburger-nav {
+                display: flex;
+            }
+            .experience, .experience-details-container{
+                margin-top: 2rem;
+            }
+            #profile, .section-container{
+                display: block;
+            }
+            .arrow{
+                display: none;
+            }
+            section, .section-container{
+                height: fit-content;
+            }
+            section{
+                margin: 0 5%;
+            }
+            .section__pic-container{
+                height: 275px;
+                width: 275px;
+                margin: 0 auto 2rem;
+            }
+            .about-containers{
+                margin-top: 0;
+            }
+        }
+        @media screen and (max-width: 600px){
+            #contact, footer{
+                height: 40vh;
+            }
+            #profile{
+                height: 83vh;
+                margin-bottom: 0;
+            }
+            article{
+                font-size: 1rem;
+            }
+            footer nav{
+                height: fit-content;
+                margin-bottom: 2rem;
+            }
+            .about-containers, .contact-info-upper-container, .btn-container{
+                flex-wrap: wrap;
+            }
+            .contact-info-container{
+                margin: 0;
+            }
+            .contact-info-container p, .nav-links li a{
+                font-size: 1rem;
+            }
+            .experience-sub-title{
+                font-size: 1.25rem;
+            }
+            .logo{
+                font-size: 2rem;
+
+            }
+            .nav-links{
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .section__pic-container{
+                width: auto;
+                height: 46vw;
+                justify-content: center;
+            }
+            .section__text__p2{
+                font-size: 1.25rem;
+            }
+            .title{
+                font-size: 2rem;
+            }
+            .text-container{
+                text-align: justify;
+            }
+            .details-container , .contact-info-upper-container{
+                box-shadow: 5px 5px 10px rgb(53, 53, 53);
+            } 
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="desktop-nav Har-Har-Mahadev">
+        <div class="logo logo-main ">Welcome!</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="hamburger-nav">
+        <div class="logo logo-main">Welcome!</div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    <section id="profile">
+        <div class="section__pic-container profile-pic-container">
+            <img src="20221208_215519 (2).jpg" alt="Profile-pic" class="profile-pic-main">
+        </div>
+        <div class="section__text">
+            <p class="section__text__p1">Hey! I'm</p>
+            <h1 class="title">Anurag Rathore</h1>
+            <p class="section__text__p2">Graphic & UI UX Designer</p>
+            <div class="btn-container">
+                <button class="btn-color-2 btn" onclick="window.open('RESUME.pdf')">Download CV</button>
+                <button class="btn-color-1 btn" onclick="window.open('Portfolio.pdf')">Portfolio</button>
+            </div>
+            <div class="socials-container">
+                <img src="https://cdn3.iconfinder.com/data/icons/2018-social-media-black-and-white-logos/1000/2018_social_media_popular_app_logo_linkedin-512.png"
+                    alt="my linked in profile" onclick="location.href='https://www.linkedin.com/in/anurag-rathore-7549b1246'" height="40px">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="my github profile"
+                    onclick="location.href='https://github.com/a11234567899'" height="40px">
+                    <img src="https://clipartcraft.com/images/instagram-logo-round-4.png" alt="my insta profile"
+                    onclick="location.href='https://instagram.com/anuragrathore001?igshid=OGQ5ZDc2ODk2ZA=='" height="40px" >
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <p class="section__text__p1">Get To Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="20221208_225014.jpg" alt="about pic" class="about-pic">
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="https://icon-library.com/images/achievement-icon-png/achievement-icon-png-29.jpg"
+                            alt="Experience icon" class="icon">
+                        <h3>Experiences</h3>
+                        <p>+2.5 years <br>Graphic & UI UX Designer</p>
+                    </div>
+                    <div class="details-container">
+                        <img src="education-removebg-preview.png" alt="Education icon" class="icon">
+                        <h3>Educations</h3>
+                        <p>Diploma in Graphic Designing<br>BCA (Software Engineer)
+                        </p>
+                    </div>
+                </div>
+                <div class="text-container">
+                    <p>I am a dedicated Graphic Designer with more than two years of hands-on experience gained through extensive practice with company. Currently pursuing a BCA degree, I have honed my skills in coreldraw, photoshop, aferefect, premier pro, and basic figma. This practice has allowed me to create seamless and engaging user interfaces. Throughout this time, I actively contributed to the Designing of several projects, collaborating with cross-functional teams to deliver high-quality websites or Thumbnails that fulfill client objectives. I am enthusiastic about continually expanding my expertise and contributing to dynamic projects that challenge me to grow as a Graphic Designer</p>
+                </div>
+            </div>
+        </div>
+        <img src="https://static.thenounproject.com/png/634848-200.png" alt="arrow icon" class="icon arrow"
+            onclick="location.href='/#experience'">
+    </section>
+    <section id="experience">
+        <p class="section__text__p1">
+            Explore My
+        </p>
+        <h1 class="title">Experience</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container">
+                    <h2 class="experience-sub-title">
+                        Graphic Designing
+                    </h2>
+                    <div class="article-container">
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>coreldraw</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>photoshop</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Afterefect</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Premier Pro</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Basic Figma</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h2 class="experience-sub-title">
+                        Work Experience
+                    </h2> 
+                    <div class="article-container">
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Prizprint pvt ltd.</h3>
+                                <p>present</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Freelancing</h3>
+                                <p>6 months</p>
+                            </div>
+                        </article>
+                        <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Aakav fitness</h3>
+                                <p>1.5 years</p>
+                            </div>
+                        </article>
+                        <!-- <article class="article-img">
+                            <img src="https://cdn0.iconfinder.com/data/icons/user-interface-pack-1-solid/22/Verified-512.png"
+                                alt="check icon" height="25px">
+                            <div>
+                                <h3>Git</h3>
+                                <p>Working-</p>
+                            </div>
+                        </article> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="https://static.thenounproject.com/png/634848-200.png" alt="arrow icon" class="arrow icon"
+            onclick="location.href='/#projects'">
+    </section>
+    <section id="contact">
+        <p class="section__text__p1">Get in Touch</p>
+        <h1 class="title">Contact Me</h1>
+        <div class="contact-info-upper-container">
+            <div class="contact-info-container">
+                <img src="email-removebg-preview.png" alt="email icon" class="icon email-icon">
+                <p><a href="taruntomar930@gmail.com"> anuragrathore115@gmail.com</a></p>
+            </div>
+            <div class="contact-info-container">
+                <img src="https://lh5.googleusercontent.com/proxy/NRlpnkIzVNQLgAbYWsdT81JzU-5Rf3GmjAB2ZS3GH5UVhOP3_JRAkvZ1hbb8gnGQZ7ouhoBTBKqDyP7s57OFZqOcyg=w640"
+                    alt="linkedin icon" class="icon " height="20px">
+                <p><a href="https://www.linkedin.com/in/anurag-rathore-7549b1246">LinkedIn</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p class="footer-p">Copyright &#169; 2023 Anurag Rathore All Right Reserved</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu-links");
+            const icon = document.querySelector(".hamburger-icon");
+            menu.classList.toggle("open");
+            icon.classList.toggle("open");
+        }
+    </script>
+
+</html>
